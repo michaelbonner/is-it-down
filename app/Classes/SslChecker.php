@@ -21,9 +21,9 @@ class SslChecker
                     return;
                 }
 
-                // If certificate is expiring within 30 days,
+                // If certificate is expiring within 15 days,
                 // don't report it as down. Just make a task.
-                if ($certificate->expirationDate()->diffInDays()<30) {
+                if ($certificate->expirationDate()->diffInDays()<15) {
                     $site->willBeDownSoon(
                         'SSL Certificate Expiring Soon',
                         'ssl',
