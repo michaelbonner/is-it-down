@@ -23,3 +23,11 @@ The url is considered "down" if it meets the following conditions:
 3. Copy `.env.example` to `.env` and configure the values (including the db)
 4. Run `composer install`
 5. Set up cron job - [Laravel documentation](https://laravel.com/docs/5.7/scheduling#introduction)
+
+## Screenshots
+
+Index Page
+![Alt text](/github/screenshot-index.png?raw=true "Optional Title")
+
+Show Page
+![Alt text](/github/screenshot-show.png?raw=true "Optional Title")
