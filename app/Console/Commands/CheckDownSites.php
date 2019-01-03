@@ -14,7 +14,7 @@ class CheckDownSites extends Command
      *
      * @var string
      */
-    protected $signature = 'ro:checkdownsites';
+    protected $signature = 'check:downsites';
 
     /**
      * The console command description.

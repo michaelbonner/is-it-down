@@ -24,8 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('ro:checksites')->everyFiveMinutes();
-        $schedule->command('ro:checkdownsites')->everyMinute();
+        $schedule->command('check:sites')->everyFiveMinutes();
+        $schedule->command('check:downsites')->everyMinute();
     }
 
     /**

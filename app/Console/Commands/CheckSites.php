@@ -13,7 +13,7 @@ class CheckSites extends Command
      *
      * @var string
      */
-    protected $signature = 'ro:checksites {url?}';
+    protected $signature = 'check:sites {url?}';
 
     /**
      * The console command description.
