@@ -15,8 +15,8 @@ class SitesTableSeeder extends Seeder
         $sites = collect(
             [
                 'https://www.google.com/',
-                'https://www.redolive.com/',
-                'https://www.redolive.com/obvious-404',
+                'https://www.lineskis.com/',
+                'https://www.brightonresort.com/',
                 'https://httpstat.us/400',
                 'https://httpstat.us/500',
                 'https://httpstat.us/301',
