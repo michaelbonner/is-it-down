@@ -56,7 +56,7 @@ class Site extends Model
         return $url_parts['scheme'] == 'https';
     }
 
-    public function willSoonBeDown(
+    public function willBeDownSoon(
         $status = 'na',
         $type,
         $due_date
