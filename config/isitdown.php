@@ -7,4 +7,5 @@ return [
     'assign_extra_task' => env('ASSIGN_EXTRA_TASK'),
     'extra_task_url' => str_finish(env('EXTRA_TASK_URL'), '/'),
     'task_list_id' => env('TASK_LIST_ID'),
+    'project_id' => env('PROJECT_ID'),
 ];

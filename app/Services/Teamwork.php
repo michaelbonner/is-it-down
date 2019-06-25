@@ -17,7 +17,7 @@ class Teamwork implements HasTasksContract
         // don't send to teamwork if this is the first time the site is down
         if (
             $site->downs()->latest()->first()
-                ->created_at->diffInMinutes(Carbon::now()) < 5
+            ->created_at->diffInMinutes(Carbon::now()) < 5
         ) {
             return true;
         }
@@ -29,17 +29,21 @@ class Teamwork implements HasTasksContract
             return true;
         }
 
+        $assign_task_to = $site->assign_task_to ?? config('isitdown.assign_main_task');
+
         $this->send_request(
             $content,
             $status_code,
-            config('isitdown.assign_main_task'),
+            $assign_task_to,
             $due_date ?? Carbon::now()->format('Ymd')
         );
 
         // Send an extra task to a person if it matches the extra_task_url
+        // and is not the same as the main task assignee
         if (
             config('isitdown.extra_task_url') &&
-            config('isitdown.assign_extra_task')
+            config('isitdown.assign_extra_task') &&
+            config('isitdown.assign_extra_task') !== $assign_task_to
         ) {
             if (in_array(
                 $site->url,
@@ -76,7 +80,7 @@ class Teamwork implements HasTasksContract
             $response = $client->request(
                 'POST',
                 config('isitdown.teamwork_url') . 'tasklists/' .
-                config('isitdown.task_list_id') . '/tasks.json',
+                    config('isitdown.task_list_id') . '/tasks.json',
                 [
                     'json' => [
                         'todo-item' => [
@@ -111,7 +115,7 @@ class Teamwork implements HasTasksContract
         $response = $client->request(
             'GET',
             config('isitdown.teamwork_url') . 'tasklists/' .
-            config('isitdown.task_list_id') . '/tasks.json'
+                config('isitdown.task_list_id') . '/tasks.json'
         );
 
         $tasks = json_decode($response->getBody());
@@ -130,10 +134,10 @@ class Teamwork implements HasTasksContract
         // complete it
         $client = self::getClient();
 
-        $response = $client->request(
+        $client->request(
             'PUT',
             config('isitdown.teamwork_url') . 'tasks/' .
-            $task->id . '/complete.json'
+                $task->id . '/complete.json'
         );
     }
 
@@ -144,5 +148,14 @@ class Teamwork implements HasTasksContract
             'timeout'  => 5.0,
             'auth' => [config('isitdown.teamwork_key'), 'X'],
         ]);
+    }
+
+    public static function getUsers()
+    {
+        $response = self::getClient()->request(
+            'GET',
+            '/projects/' . config('isitdown.project_id') . '/people.json'
+        );
+        return (json_decode($response->getBody()))->people;
     }
 }

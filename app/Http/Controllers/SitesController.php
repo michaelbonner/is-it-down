@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Site;
 use App\Http\Requests\SiteStoreRequest;
 use App\Http\Requests\SiteUpdateRequest;
+use App\Services\Teamwork;
 
 class SitesController extends Controller
 {
@@ -51,8 +52,8 @@ class SitesController extends Controller
     public function show(Site $site)
     {
         $downs = $site->downs()->withTrashed()
-                ->orderBy('updated_at', 'DESC')
-                ->get();
+            ->orderBy('updated_at', 'DESC')
+            ->get();
         return view('site.show', compact('site', 'downs'));
     }
 
@@ -64,7 +65,14 @@ class SitesController extends Controller
      */
     public function edit(Site $site)
     {
-        return view('site.edit', compact('site'));
+        $users = Teamwork::getUsers();
+        return view(
+            'site.edit',
+            compact(
+                'site',
+                'users'
+            )
+        );
     }
 
     /**

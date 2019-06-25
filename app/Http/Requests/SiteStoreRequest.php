@@ -24,7 +24,8 @@ class SiteStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'required|unique:sites,url|url|active_url'
+            'url' => 'required|unique:sites,url|url|active_url',
+            'assign_task_to' => 'nullable',
         ];
     }
 }
