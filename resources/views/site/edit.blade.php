@@ -23,8 +23,10 @@
                 </div>
             </div>
             <div class="field">
-                <label class="label" for="assign_task_to">Assign Task To:</label>
-                <div class="control">
+                <label class="label tooltip" for="assign_task_to"
+                    data-tooltip="User must be assigned to the correct project"
+                    title="Tooltip on top">Assign Task To:</label>
+                <div class="select">
                     <select class="input" name="assign_task_to">
                         <option value="0" @if($site->assign_task_to == '0')
                             selected
