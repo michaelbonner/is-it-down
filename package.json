@@ -1,0 +1,33 @@
+{
+    "name": "is-it-down",
+    "version": "1.0.0",
+    "description": "## How it works",
+    "main": "webpack.mix.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/michaelbonner/is-it-down.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/michaelbonner/is-it-down/issues"
+    },
+    "homepage": "https://github.com/michaelbonner/is-it-down#readme",
+    "devDependencies": {
+        "@babel/preset-react": "^7.0.0",
+        "bootstrap": "^4.0.0",
+        "jquery": "^3.2",
+        "popper.js": "^1.12",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "sass": "^1.15.2",
+        "sass-loader": "^8.0.0"
+    }
+}
