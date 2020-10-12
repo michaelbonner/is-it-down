@@ -14,6 +14,7 @@ class Teamwork implements HasTasksContract
         string $type,
         Carbon $due_date = null
     ) {
+        return false;
         // don't send to teamwork if this is the first time the site is down
         if (
             $site->downs()->latest()->first()
@@ -66,6 +67,7 @@ class Teamwork implements HasTasksContract
         Site $site,
         string $type
     ) {
+        return false;
         $content = 'Site ' . strtoupper($type) . ' Error: ' . $site->url;
         foreach ($this->find_tasks($content) as $task) {
             $this->complete_task($task);
@@ -74,6 +76,7 @@ class Teamwork implements HasTasksContract
 
     public static function send_request($content, $description, $assignee, $due_date)
     {
+        return false;
         $client = self::getClient();
 
         try {
@@ -110,6 +113,7 @@ class Teamwork implements HasTasksContract
 
     public static function find_tasks($content)
     {
+        return collect([]);
         $client = self::getClient();
 
         $response = $client->request(
@@ -131,6 +135,7 @@ class Teamwork implements HasTasksContract
 
     public static function complete_task($task)
     {
+        return false;
         // complete it
         $client = self::getClient();
 
@@ -143,6 +148,7 @@ class Teamwork implements HasTasksContract
 
     public static function getClient()
     {
+        return false;
         return new Client([
             'base_uri' => config('isitdown.teamwork_url'),
             'timeout'  => 5.0,
@@ -152,6 +158,7 @@ class Teamwork implements HasTasksContract
 
     public static function getUsers()
     {
+        return collect([]);
         $response = self::getClient()->request(
             'GET',
             '/projects/' . config('isitdown.project_id') . '/people.json'
