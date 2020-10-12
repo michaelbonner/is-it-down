@@ -8,16 +8,6 @@ use App\Services\Teamwork;
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-
-    /**
      * Register any application services.
      *
      * @return void
@@ -27,5 +17,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('HasTasks', function ($app) {
             return new Teamwork;
         });
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
     }
 }
