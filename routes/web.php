@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\SitesController;
 use App\Http\Controllers\SitesDownController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SitesController::class, 'index'])
     ->name('site.index');
