@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\BasecampAuthController;
 use App\Http\Controllers\SitesController;
 use App\Http\Controllers\SitesDownController;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sites-down', [SitesDownController::class, 'index'])
         ->name('sites-down.index');
 });
+
+Route::get('basecamp-redirect', [BasecampAuthController::class, 'store'])
+    ->name('basecamp-redirect.store');
 
 Auth::routes([
     'register' => false
