@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\SitesController;
+use App\Http\Controllers\SitesDownController;
 
 Route::get('/', [SitesController::class, 'index'])
     ->name('site.index');
@@ -28,5 +29,5 @@ Route::put('/site/{site}', [SitesController::class, 'update'])
 Route::delete('/site/{site}', [SitesController::class, 'destroy'])
     ->name('site.destroy');
 
-Route::get('/sites-down', 'SitesDownController@index')
+Route::get('/sites-down', [SitesDownController::class, 'index'])
     ->name('sites-down.index');
