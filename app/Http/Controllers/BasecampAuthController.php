@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BasecampAuth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class BasecampAuthController extends Controller
 {
@@ -14,7 +15,15 @@ class BasecampAuthController extends Controller
      */
     public function index()
     {
-        //
+        if (!request()->user()) {
+            return 'You must be logged in';
+        }
+        return redirect()
+            ->to(
+                'https://launchpad.37signals.com/authorization/new?type=web_server&client_id=' .
+                    config('services.basecamp.client_id') .
+                    '&redirect_uri=' . route('basecamp-verify.store')
+            );
     }
 
     /**
@@ -36,14 +45,40 @@ class BasecampAuthController extends Controller
     public function store(Request $request)
     {
         try {
+            $tokenRequest = Http::post('https://launchpad.37signals.com/authorization/token?type=web_server' .
+                '&client_id=' . config('services.basecamp.client_id') .
+                '&redirect_uri=' . route('basecamp-verify.store') .
+                '&client_secret=' . config('services.basecamp.client_secret') .
+                '&code=' . $request->code);
+
+            if (!$tokenRequest->successful()) {
+                return redirect()
+                    ->to('/')
+                    ->with(
+                        'info',
+                        $tokenRequest->json()['error']
+                    );
+            }
+
             BasecampAuth::create([
                 'user_id' => $request->user()->id,
-                'data' => $request->all(),
+                'data' => $tokenRequest->json(),
             ]);
-            return 'all good';
+
+            return redirect()
+                ->to('/')
+                ->with(
+                    'message',
+                    'Successfully authenticated with Basecamp'
+                );
         } catch (\Throwable $th) {
             report($th);
-            die('failed');
+            return redirect()
+                ->to('/')
+                ->with(
+                    'info',
+                    $th->getMessage()
+                );
         }
     }
 

@@ -37,8 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('sites-down.index');
 });
 
-Route::get('basecamp-redirect', [BasecampAuthController::class, 'store'])
-    ->name('basecamp-redirect.store');
+Route::get('basecamp/redirect', [BasecampAuthController::class, 'index'])
+    ->name('basecamp-redirect.index');
+Route::get('basecamp/verify', [BasecampAuthController::class, 'store'])
+    ->name('basecamp-verify.store');
 
 Auth::routes([
     'register' => false

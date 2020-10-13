@@ -24,8 +24,8 @@
             </div>
             <div class="field">
                 <label class="label tooltip" for="assign_task_to"
-                    data-tooltip="User must be assigned to the correct project"
-                    title="Tooltip on top">Assign Task To:</label>
+                    data-tooltip="User must be assigned to the correct project" title="Tooltip on top">Assign Task
+                    To:</label>
                 <div class="select">
                     <select class="input" name="assign_task_to">
                         <option value="0" @if($site->assign_task_to == '0')
@@ -33,10 +33,10 @@
                             @endif
                             >Default</option>
                         @foreach ($users as $user)
-                        <option value="{{$user->id}}" @if($site->assign_task_to == $user->id)
+                        <option value="{{$user['id']}}" @if($site->assign_task_to == $user['id'])
                             selected
                             @endif
-                            >{{ $user->{'first-name'} }} {{ $user->{'last-name'} }}</option>
+                            >{{ $user['name'] }}</option>
                         @endforeach
                     </select>
                 </div>

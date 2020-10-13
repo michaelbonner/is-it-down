@@ -19,7 +19,7 @@ class Site extends Model
     {
         return $this->hasMany(Down::class);
     }
-    
+
     // get whether or not the site is currently reported as down
     public function getIsDownAttribute()
     {
@@ -74,7 +74,7 @@ class Site extends Model
         $type
     ) {
         // Create a down if there isn't one already
-        if (! $down = Down::where('site_id', $this->id)->first()) {
+        if (!$down = Down::where('site_id', $this->id)->first()) {
             $down = Down::create([
                 'site_id' => $this->id,
                 'type' => $type
@@ -83,9 +83,9 @@ class Site extends Model
 
         // Add a report to this down for this status if there isn't one already
         if (
-            ! $report = Report::where('down_id', $down->id)
-                                ->where('status', $status)
-                                ->first()
+            !$report = Report::where('down_id', $down->id)
+                ->where('status', $status)
+                ->first()
         ) {
             Report::create([
                 'down_id' => $down->id,

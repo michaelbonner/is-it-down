@@ -30,4 +30,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'basecamp' => [
+        'account' => env('BASECAMP_ACCOUNT'),
+        'project' => env('BASECAMP_PROJECT'),
+        'list' => env('BASECAMP_LIST'),
+        'useragent' => env('BASECAMP_USERAGENT'),
+        'client_id'  => env('BASECAMP_CLIENT_ID'),
+        'client_secret'  => env('BASECAMP_CLIENT_SECRET'),
+    ]
+
 ];

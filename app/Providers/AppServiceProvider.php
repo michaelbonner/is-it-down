@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Services\Teamwork;
+use App\Services\Basecamp;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('HasTasks', function ($app) {
-            return new Teamwork;
+            return new Basecamp;
         });
     }
 

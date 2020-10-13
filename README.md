@@ -2,19 +2,19 @@
 
 ## How it works
 
-Add as many urls as you would like. The app will check the url once every 5 minutes. If the url responds with an invalid it will report the url as "down." Once the site has been down for 5 minutes the app will create a task in Teamwork (you can add your own task manager and swap out the binding in `\App\Providers\AppServiceProvider`. Once the url comes back up the app will auto-complete the task.
+Add as many urls as you would like. The app will check the url once every 5 minutes. If the url responds with an invalid it will report the url as "down." Once the site has been down for 5 minutes the app will create a task in Basecamp. Once the url comes back up the app will auto-complete the task.
 
 The url is considered "down" if it meets the following conditions:
 
-- Response code is not 2xx
-- Certificate will expire within 30 days
+-   Response code is not 2xx
+-   Certificate will expire within 30 days
 
 ## Prerequisites
 
-- PHP (^7.1.3)
-- Laravel - [Learn Laravel](https://laravelfromscratch.com)
-- Database (MariaDB, PostgreSQL, MySQL)
-- Server (NGINX/Apache)
+-   PHP (^7.1.3)
+-   Laravel - [Learn Laravel](https://laravelfromscratch.com)
+-   Database (MariaDB, PostgreSQL, MySQL)
+-   Server (NGINX/Apache)
 
 ## Getting started
 

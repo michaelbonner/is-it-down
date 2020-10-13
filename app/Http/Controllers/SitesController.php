@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Site;
 use App\Http\Requests\SiteStoreRequest;
 use App\Http\Requests\SiteUpdateRequest;
-use App\Services\Teamwork;
+use App\Services\Basecamp;
 
 class SitesController extends Controller
 {
@@ -65,7 +65,7 @@ class SitesController extends Controller
      */
     public function edit(Site $site)
     {
-        $users = Teamwork::getUsers();
+        $users = Basecamp::getUsers();
         return view(
             'site.edit',
             compact(
