@@ -92,21 +92,18 @@ class Basecamp implements HasTasksContract
     ) {
         $content = 'Site ' . strtoupper($type) . ' Error: ' . $site->url;
         foreach ($this->find_tasks($content) as $task) {
-            Http::withToken(self::getToken())
+            $response = Http::withToken(self::getToken())
                 ->withHeaders([
                     'User-Agent' => config('services.basecamp.useragent')
                 ])
-                ->put(
+                ->post(
                     'https://3.basecampapi.com/' . config('services.basecamp.account') .
                         '/buckets/' . config('services.basecamp.project') .
                         '/todos/' . $task['id'] .
                         '/completion.json',
-                    [
-                        'description' => $content,
-                        'assignee_ids' => [$site->assign_task_to],
-                        'due_on' => $due_date ?? Carbon::now()->format('Ymd'),
-                    ]
+                    []
                 );
+            return $response->json();
         }
     }
 
