@@ -62,6 +62,7 @@ class Basecamp implements HasTasksContract
         $data = [
             'content' => $content,
             'due_on' => $due_date ?? Carbon::now()->format('Ymd'),
+            'notify' => true,
         ];
 
         if ($site->assign_task_to) {
