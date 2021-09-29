@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Site;
 use App\Http\Requests\SiteStoreRequest;
 use App\Http\Requests\SiteUpdateRequest;
+use App\Models\Site;
 use App\Services\Basecamp;
 
 class SitesController extends Controller
@@ -19,7 +19,7 @@ class SitesController extends Controller
         $sites = Site::with([
             'downs',
             'downsWithTrashed',
-            'reports'
+            'reports',
         ])
             ->get();
 
@@ -48,6 +48,7 @@ class SitesController extends Controller
     public function store(SiteStoreRequest $request)
     {
         Site::create($request->all());
+
         return redirect(route('site.index'))
             ->with('message', 'Successfully created site');
     }
@@ -61,7 +62,7 @@ class SitesController extends Controller
     public function show(Site $site)
     {
         $site->load([
-            'downsWithTrashed'
+            'downsWithTrashed',
         ]);
 
         $downs = $site->downsWithTrashed
@@ -83,6 +84,7 @@ class SitesController extends Controller
     public function edit(Site $site)
     {
         $users = Basecamp::getUsers();
+
         return view(
             'site.edit',
             compact(
@@ -102,6 +104,7 @@ class SitesController extends Controller
     public function update(SiteUpdateRequest $request, Site $site)
     {
         $site->update($request->all());
+
         return redirect(route('site.index'))
             ->with('message', 'Successfully updated site');
     }
@@ -116,6 +119,7 @@ class SitesController extends Controller
     {
         $site->markTasksComplete();
         $site->delete();
+
         return redirect()->back()->with('message', 'Successfully deleted site');
     }
 }

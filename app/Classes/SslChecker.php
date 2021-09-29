@@ -19,6 +19,7 @@ class SslChecker
                 // Check if certificate is valid
                 if (!$certificate->isValid()) {
                     $site->currentlyDown('Invalid SSL Certificate', 'ssl');
+
                     return;
                 }
 
@@ -30,6 +31,7 @@ class SslChecker
                         'ssl',
                         $certificate->expirationDate()->subWeekday()
                     );
+
                     return;
                 }
 

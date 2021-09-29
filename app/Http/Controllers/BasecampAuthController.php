@@ -18,6 +18,7 @@ class BasecampAuthController extends Controller
         if (!request()->user()) {
             return 'You must be logged in';
         }
+
         return redirect()
             ->to(
                 'https://launchpad.37signals.com/authorization/new?type=web_server&client_id=' .
@@ -73,6 +74,7 @@ class BasecampAuthController extends Controller
                 );
         } catch (\Throwable $th) {
             report($th);
+
             return redirect()
                 ->to('/')
                 ->with(

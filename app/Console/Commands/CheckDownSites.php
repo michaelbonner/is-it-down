@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Classes\SiteChecker;
 use App\Models\Down;
 use App\Models\Site;
-use App\Classes\SiteChecker;
 use Illuminate\Console\Command;
 
 class CheckDownSites extends Command
@@ -46,8 +46,9 @@ class CheckDownSites extends Command
                 $this->info('Checking ' . $site->url);
                 SiteChecker::checkSite($site);
             });
-            
+
             $this->info('Finished checking down sites');
+
             return;
         }
 

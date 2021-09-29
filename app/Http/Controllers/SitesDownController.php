@@ -12,7 +12,7 @@ class SitesDownController extends Controller
         $sites = Site::with([
             'downs',
             'downsWithTrashed',
-            'reports'
+            'reports',
         ])
             ->whereHas('downs')
             ->get();

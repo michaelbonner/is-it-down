@@ -44,12 +44,14 @@ class Site extends Model
     {
         $last_down = $this->downsWithTrashed
             ->last();
+
         return $last_down ?? false;
     }
 
     public function getHostNameAttribute()
     {
         $url_parts = parse_url($this->url);
+
         return $url_parts['host'] ?? null;
     }
 
@@ -57,6 +59,7 @@ class Site extends Model
     {
         $url_parts = parse_url($this->url);
         $path = $url_parts['path'] ?? null;
+
         return $this->host_name . $path;
     }
 
@@ -72,6 +75,7 @@ class Site extends Model
     public function getIsSecureAttribute()
     {
         $url_parts = parse_url($this->url);
+
         return $url_parts['scheme'] == 'https';
     }
 
@@ -101,7 +105,7 @@ class Site extends Model
         if (!$this->downs->count()) {
             $down = Down::create([
                 'site_id' => $this->id,
-                'type' => $type
+                'type' => $type,
             ]);
         }
 
@@ -113,7 +117,7 @@ class Site extends Model
         ) {
             Report::create([
                 'down_id' => $down->id,
-                'status' => $status
+                'status' => $status,
             ]);
         }
 

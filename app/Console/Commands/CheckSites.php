@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Site;
 use App\Classes\SiteChecker;
+use App\Models\Site;
 use Illuminate\Console\Command;
 
 class CheckSites extends Command

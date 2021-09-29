@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Classes;
 
 use GuzzleHttp\Client;
@@ -8,7 +9,7 @@ class HttpChecker
     public static function check_site_status($site)
     {
         $client = new Client([
-            'timeout' => 10
+            'timeout' => 10,
         ]);
 
         $url_parts = parse_url($site->url);
@@ -16,7 +17,7 @@ class HttpChecker
         try {
             $response = $client->request('GET', $site->url, [
                 'headers' => [
-                    'Accept' => 'text/html,application/xhtml+xml,'.
+                    'Accept' => 'text/html,application/xhtml+xml,' .
                         'application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
                     'Accept-Encoding' =>  'gzip, deflate',
                     'Accept-Language' =>  'en-US,en;q=0.9',
@@ -26,9 +27,9 @@ class HttpChecker
                     'Pragma' =>  'no-cache',
                     'Upgrade-Insecure-Requests' =>  '1',
                     'User-Agent' =>  'Mozilla/5.0 (Macintosh; Intel Mac OS '
-                        .'X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko)'.
+                        . 'X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko)' .
                         ' Chrome/67.0.3396.87 Safari/537.36',
-                ]
+                ],
             ]);
 
             if (

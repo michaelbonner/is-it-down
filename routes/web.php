@@ -43,5 +43,5 @@ Route::get('basecamp/verify', [BasecampAuthController::class, 'store'])
     ->name('basecamp-verify.store');
 
 Auth::routes([
-    'register' => false
+    'register' => false,
 ]);

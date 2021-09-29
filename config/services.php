@@ -37,6 +37,6 @@ return [
         'useragent' => env('BASECAMP_USERAGENT'),
         'client_id'  => env('BASECAMP_CLIENT_ID'),
         'client_secret'  => env('BASECAMP_CLIENT_SECRET'),
-    ]
+    ],
 
 ];

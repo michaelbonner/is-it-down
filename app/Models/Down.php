@@ -13,7 +13,7 @@ class Down extends Model
     protected $guarded = [];
 
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
     ];
 
     public $reasons = [
@@ -34,6 +34,7 @@ class Down extends Model
     public function getTimeDownAttribute()
     {
         $time = $this->deleted_at ?? Carbon::now();
+
         return $this->created_at->diff($time)->format('%H:%I:%S');
     }
 

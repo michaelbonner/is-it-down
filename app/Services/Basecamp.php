@@ -18,15 +18,15 @@ class Basecamp implements HasTasksContract
 
     public static function getUsers()
     {
-
         $response = Http::withToken(self::getToken())
             ->withHeaders([
-                'User-Agent' => config('services.basecamp.useragent')
+                'User-Agent' => config('services.basecamp.useragent'),
             ])
             ->get(
                 'https://3.basecampapi.com/' . config('services.basecamp.account') .
                     '/projects/' . config('services.basecamp.project') . '/people.json'
             );
+
         return collect(
             $response->json()
         );
@@ -59,7 +59,6 @@ class Basecamp implements HasTasksContract
             return true;
         }
 
-
         $data = [
             'content' => $content,
             'due_on' => $due_date ?? Carbon::now()->format('Ymd'),
@@ -68,13 +67,13 @@ class Basecamp implements HasTasksContract
 
         if ($site->assign_task_to) {
             $data['assignee_ids'] = [
-                $site->assign_task_to
+                $site->assign_task_to,
             ];
         }
 
         $response = Http::withToken(self::getToken())
             ->withHeaders([
-                'User-Agent' => config('services.basecamp.useragent')
+                'User-Agent' => config('services.basecamp.useragent'),
             ])
             ->post(
                 'https://3.basecampapi.com/' . config('services.basecamp.account') .
@@ -95,7 +94,7 @@ class Basecamp implements HasTasksContract
         foreach ($this->find_tasks($content) as $task) {
             $response = Http::withToken(self::getToken())
                 ->withHeaders([
-                    'User-Agent' => config('services.basecamp.useragent')
+                    'User-Agent' => config('services.basecamp.useragent'),
                 ])
                 ->post(
                     'https://3.basecampapi.com/' . config('services.basecamp.account') .
@@ -104,6 +103,7 @@ class Basecamp implements HasTasksContract
                         '/completion.json',
                     []
                 );
+
             return $response->json();
         }
     }
@@ -112,7 +112,7 @@ class Basecamp implements HasTasksContract
     {
         $response = Http::withToken(self::getToken())
             ->withHeaders([
-                'User-Agent' => config('services.basecamp.useragent')
+                'User-Agent' => config('services.basecamp.useragent'),
             ])
             ->get(
                 'https://3.basecampapi.com/' . config('services.basecamp.account') .
