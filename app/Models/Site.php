@@ -57,7 +57,7 @@ class Site extends Model
     }
 
     public function willBeDownSoon(
-        $status = 'na',
+        $status,
         $type,
         $due_date
     ) {
@@ -70,7 +70,7 @@ class Site extends Model
      * check if this status has already been reported.
      */
     public function currentlyDown(
-        $status = 'na',
+        $status,
         $type
     ) {
         // Create a down if there isn't one already

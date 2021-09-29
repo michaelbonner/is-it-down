@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Classes;
 
 use Spatie\SslCertificate\SslCertificate;
@@ -9,11 +10,11 @@ class SslChecker
     {
         try {
             $url_parts = parse_url($site->url);
-            
+
             if (substr($site->url, 0, 5) == 'https') {
                 $certificate = SslCertificate::download()
-                                ->withVerifyPeer(false)
-                                ->forHost($url_parts['host']);
+                    ->withVerifyPeer(false)
+                    ->forHost($url_parts['host']);
 
                 // Check if certificate is valid
                 if (!$certificate->isValid()) {
@@ -23,11 +24,11 @@ class SslChecker
 
                 // If certificate is expiring within 15 days,
                 // don't report it as down. Just make a task.
-                if ($certificate->expirationDate()->diffInDays()<15) {
+                if ($certificate->expirationDate()->diffInDays() < 15) {
                     $site->willBeDownSoon(
                         'SSL Certificate Expiring Soon',
                         'ssl',
-                        $certificate->expirationDate()->subWeekday()->format('Ymd')
+                        $certificate->expirationDate()->subWeekday()
                     );
                     return;
                 }
