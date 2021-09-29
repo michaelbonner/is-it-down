@@ -16,7 +16,7 @@
         "laravel/legacy-factories": "^1.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
-        "spatie/ssl-certificate": "^1.20"
+        "spatie/ssl-certificate": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
