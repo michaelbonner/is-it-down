@@ -12,9 +12,6 @@ class Down extends Model
 
     protected $guarded = [];
 
-    protected $dates = [
-        'deleted_at',
-    ];
 
     public $reasons = [
         'ssl' => 'Invalid SSL/certificate expiring soon',
