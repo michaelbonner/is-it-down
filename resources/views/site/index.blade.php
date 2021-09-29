@@ -50,7 +50,8 @@
                         @if(!$site->assign_task_to)
                         <div>
                             <p class="has-text-warning-dark has-text-weight-medium">
-                                <i class="fas fa-exclamation-circle"></i> Will not be assigned to a user
+                                <i class="fas fa-exclamation-circle"></i> Task will not be assigned to a user when
+                                created
                             </p>
                         </div>
                         @endif
