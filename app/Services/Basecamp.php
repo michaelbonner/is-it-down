@@ -38,6 +38,7 @@ class Basecamp implements HasTasksContract
         string $type,
         Carbon $due_date = null
     ) {
+        // don't create a task if it hasn't been down for at least 5 minutes
         if (
             $site->downs()
             ->latest()
