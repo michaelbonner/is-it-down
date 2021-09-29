@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\Site;
 use Faker\Generator as Faker;
 
-$factory->define(App\Models\Site::class, function (Faker $faker) {
+$factory->define(Site::class, function (Faker $faker) {
     return [
         'url' => $faker->url,
     ];
