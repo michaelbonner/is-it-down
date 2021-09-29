@@ -47,6 +47,13 @@
                             </p>
                         </div>
                         @endif
+                        @if(!$site->assign_task_to)
+                        <div>
+                            <p class="has-text-warning-dark has-text-weight-medium">
+                                <i class="fas fa-exclamation-circle"></i> Will not be assigned to a user
+                            </p>
+                        </div>
+                        @endif
                     </div>
                     <footer class="card-footer">
                         <a href="{{route('site.show', $site->id)}}" class="card-footer-item">History</a>

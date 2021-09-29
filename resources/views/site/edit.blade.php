@@ -31,7 +31,7 @@
                         <option value="0" @if($site->assign_task_to == '0')
                             selected
                             @endif
-                            >Default</option>
+                            >None</option>
                         @foreach ($users as $user)
                         <option value="{{$user['id']}}" @if($site->assign_task_to == $user['id'])
                             selected
