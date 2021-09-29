@@ -24,8 +24,14 @@ class SiteUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'required|url|active_url',
-            'assign_task_to' => 'nullable',
+            'url' => [
+                'required',
+                'url',
+                'active_url',
+            ],
+            'assign_task_to' => [
+                'nullable',
+            ],
         ];
     }
 }
