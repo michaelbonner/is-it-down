@@ -20,15 +20,30 @@ class Site extends Model
         return $this->hasMany(Down::class);
     }
 
+    public function reports()
+    {
+        return $this->hasManyThrough(
+            Report::class,
+            Down::class
+        );
+    }
+
+    public function downsWithTrashed()
+    {
+        return $this->hasMany(Down::class)
+            ->withTrashed();
+    }
+
     // get whether or not the site is currently reported as down
     public function getIsDownAttribute()
     {
-        return $this->downs()->count();
+        return $this->downs->count();
     }
 
     public function getLastDownAttribute()
     {
-        $last_down = $this->downs()->withTrashed()->latest()->first();
+        $last_down = $this->downsWithTrashed
+            ->last();
         return $last_down ?? false;
     }
 
@@ -47,7 +62,11 @@ class Site extends Model
 
     public function getPrettyUrlWithNoWwwAttribute()
     {
-        return str_replace('www.', '', $this->pretty_url);
+        return str_replace(
+            'www.',
+            '',
+            $this->pretty_url
+        );
     }
 
     public function getIsSecureAttribute()
@@ -61,7 +80,12 @@ class Site extends Model
         $type,
         $due_date
     ) {
-        resolve('HasTasks')->maybe_create_task($this, $status, $type, $due_date);
+        resolve('HasTasks')->maybe_create_task(
+            $this,
+            $status,
+            $type,
+            $due_date
+        );
     }
 
     /**
@@ -74,7 +98,7 @@ class Site extends Model
         $type
     ) {
         // Create a down if there isn't one already
-        if (!$down = Down::where('site_id', $this->id)->first()) {
+        if (!$this->downs->count()) {
             $down = Down::create([
                 'site_id' => $this->id,
                 'type' => $type
@@ -83,7 +107,7 @@ class Site extends Model
 
         // Add a report to this down for this status if there isn't one already
         if (
-            !$report = Report::where('down_id', $down->id)
+            !$this->reports
                 ->where('status', $status)
                 ->first()
         ) {
@@ -99,13 +123,24 @@ class Site extends Model
     // mark site as currently up
     public function currentlyUp(string $type)
     {
-        $this->downs()->where('type', $type)->delete();
-        resolve('HasTasks')->maybe_complete_task($this, $type);
+        $this->downs()
+            ->where('type', $type)
+            ->delete();
+        resolve('HasTasks')->maybe_complete_task(
+            $this,
+            $type
+        );
     }
 
     public function markTasksComplete()
     {
-        resolve('HasTasks')->maybe_complete_task($this, 'http');
-        resolve('HasTasks')->maybe_complete_task($this, 'ssl');
+        resolve('HasTasks')->maybe_complete_task(
+            $this,
+            'http'
+        );
+        resolve('HasTasks')->maybe_complete_task(
+            $this,
+            'ssl'
+        );
     }
 }

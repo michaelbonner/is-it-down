@@ -16,8 +16,17 @@ class SitesController extends Controller
      */
     public function index()
     {
-        $sites = Site::all();
-        return view('site.index', compact('sites'));
+        $sites = Site::with([
+            'downs',
+            'downsWithTrashed',
+            'reports'
+        ])
+            ->get();
+
+        return view(
+            'site.index',
+            compact('sites')
+        );
     }
 
     /**
@@ -51,10 +60,18 @@ class SitesController extends Controller
      */
     public function show(Site $site)
     {
-        $downs = $site->downs()->withTrashed()
-            ->orderBy('updated_at', 'DESC')
-            ->get();
-        return view('site.show', compact('site', 'downs'));
+        $site->load([
+            'downsWithTrashed'
+        ]);
+
+        $downs = $site->downsWithTrashed
+            ->load('reports')
+            ->sortBy('updated_at');
+
+        return view(
+            'site.show',
+            compact('site', 'downs')
+        );
     }
 
     /**

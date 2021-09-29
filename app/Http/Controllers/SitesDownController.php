@@ -9,9 +9,17 @@ class SitesDownController extends Controller
     public function index()
     {
         $title = 'Sites Currently Down';
-        $sites = Site::all()->filter(function ($site) {
-            return $site->downs()->count();
-        });
-        return view('sites-down.index', compact('sites', 'title'));
+        $sites = Site::with([
+            'downs',
+            'downsWithTrashed',
+            'reports'
+        ])
+            ->whereHas('downs')
+            ->get();
+
+        return view(
+            'sites-down.index',
+            compact('sites', 'title')
+        );
     }
 }

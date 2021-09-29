@@ -40,9 +40,16 @@ class CheckSites extends Command
     public function handle()
     {
         if ($this->argument('url')) {
-            $sites = Site::where('url', $this->argument('url'))->get();
+            $sites = Site::where(
+                'url',
+                $this->argument('url')
+            )->get();
         } else {
-            $sites = Site::all();
+            $sites = Site::with([
+                'downs',
+                'downsWithTrashed',
+                'reports',
+            ]);
         }
 
         $sites->each(function ($site) {
