@@ -65,9 +65,10 @@ class SitesController extends Controller
             'downsWithTrashed',
         ]);
 
-        $downs = $site->downsWithTrashed
-            ->load('reports')
-            ->sortByDesc('updated_at');
+        $downs = $site->downsWithTrashed()
+            ->with('reports')
+            ->orderBy('updated_at', 'desc')
+            ->paginate();
 
         return view(
             'site.show',

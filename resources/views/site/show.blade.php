@@ -75,7 +75,7 @@
                 @endforeach
             </tbody>
         </table>
-        </p>
+        {{ $downs->links() }}
     </div>
 </section>
 @endsection
