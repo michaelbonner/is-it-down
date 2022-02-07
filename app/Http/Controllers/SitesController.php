@@ -67,7 +67,7 @@ class SitesController extends Controller
 
         $downs = $site->downsWithTrashed
             ->load('reports')
-            ->sortBy('updated_at');
+            ->sortByDesc('updated_at');
 
         return view(
             'site.show',
