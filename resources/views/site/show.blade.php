@@ -33,7 +33,7 @@
         </p>
         @endif
         <p>
-            Count times down: {{ $downs->count() }}
+            Count times down: {{ $downs->total() }}
         </p>
         <hr>
     </div>
