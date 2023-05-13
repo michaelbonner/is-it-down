@@ -12,9 +12,10 @@ class SslChecker
             $url_parts = parse_url($site->url);
 
             if (substr($site->url, 0, 5) == 'https') {
-                $certificate = SslCertificate::download()
-                    ->withVerifyPeer(false)
-                    ->forHost($url_parts['host']);
+                $certificate = SslCertificate::createForHostName(
+                    $url_parts['host'],
+                    10,
+                );
 
                 // Check if certificate is valid
                 if (!$certificate->isValid()) {
