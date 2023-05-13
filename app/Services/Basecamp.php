@@ -13,7 +13,7 @@ class Basecamp implements HasTasksContract
     {
         return BasecampAuth::latest()
             ->first()
-            ->data['access_token'];
+            ?->data['access_token'] ?? "";
     }
 
     public static function getUsers()
