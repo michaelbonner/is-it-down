@@ -1,7 +1,15 @@
 {
     "words": [
+        "autoload",
+        "autoloader",
         "completeall",
+        "dont",
         "downsites",
+        "fakerphp",
+        "guzzlehttp",
+        "nunomaduro",
+        "phpunit",
+        "spatie",
         "todolists",
         "todos"
     ]
