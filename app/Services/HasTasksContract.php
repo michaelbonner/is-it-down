@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Site;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
 interface HasTasksContract
 {
