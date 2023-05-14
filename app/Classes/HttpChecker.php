@@ -55,8 +55,7 @@ class HttpChecker
             $exception_response = $exception->getResponse()
         ) {
             return $exception_response->getStatusCode();
-        } else {
-            return 'No Response';
         }
+        return 'No Response';
     }
 }
