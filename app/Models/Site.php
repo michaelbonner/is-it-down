@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Down;
-use App\Models\Report;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

@@ -2,9 +2,6 @@
 
 namespace App\Classes;
 
-use App\Classes\HttpChecker;
-use App\Classes\SslChecker;
-
 class SiteChecker
 {
     public static function checkSite($site)

@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('HasTasks', function ($app) {
-            return new Basecamp;
+            return new Basecamp();
         });
     }
 
