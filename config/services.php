@@ -25,6 +25,15 @@ return [
         'token' => env('POSTMARK_TOKEN'),
     ],
 
+    'basecamp' => [
+        'account' => env('BASECAMP_ACCOUNT'),
+        'client_id' => env('BASECAMP_CLIENT_ID'),
+        'client_secret' => env('BASECAMP_CLIENT_SECRET'),
+        'list' => env('BASECAMP_LIST'),
+        'project' => env('BASECAMP_PROJECT'),
+        'useragent' => env('BASECAMP_USERAGENT'),
+    ],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
