@@ -7,6 +7,7 @@
         "downsites",
         "fakerphp",
         "guzzlehttp",
+        "Mailgun",
         "nunomaduro",
         "phpunit",
         "spatie",
