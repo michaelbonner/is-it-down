@@ -31,7 +31,7 @@
     </div>
 
     <div class="container has-text-right">
-        <a href="{{route('basecamp-redirect.index')}}">
+        <a href="{{ route('basecamp-redirect.index') }}">
             <img alt="Refresh basecamp token" src="/img/basecamp-logo.svg" style="width:120px" /><br />
             Refresh Token
         </a>
