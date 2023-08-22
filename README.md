@@ -1,3 +1,10 @@
+# ! This project is no longer maintained !
+
+***After finding [Uptime Kuma](https://uptime.kuma.pet/) work on this project seems pretty valueless. If you're looking for uptime monitoring with tons of configurability and notification methods check it out.***
+
+---
+
+
 # Is It Down Checker
 
 ## How it works
